@@ -1,7 +1,9 @@
 # Личный проект «Кексобукинг» [![Build status][travis-image]][travis-url]
 
-* Студент: [Владимир Соболев](https://up.htmlacademy.ru/javascript/14/user/591707).
-* Наставник: `Неизвестно`.
+*Студент:[ВладимирСоболев](https://up.htmlacademy.ru/javascript/14/user/591707).
+*Наставник:[ФилиппШамсиев](https://up.htmlacademy.ru/javascript/14/user/70260).
+
+
 
 ---
 
