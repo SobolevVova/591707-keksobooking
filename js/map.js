@@ -61,7 +61,7 @@ var getPoster = function (number) {
       checkout: getRandomArrayElement(LIST_CHECKINS),
       features: getRandomFeatures(LIST_FEATURES),
       description: '',
-      photos: shuffleArray(LIST_PHOTOS),
+      photos: shuffleArray(LIST_PHOTOS)
     }
   };
   return poster;
@@ -72,3 +72,40 @@ var posters = [];
 for (var i = 0; i < 8; i++) {
   posters[i] = getPoster(i);
 }
+
+// Задание 2
+
+var cityMap = document.querySelector('.map');
+cityMap.classList.remove('map--faded');
+
+// Задание 3
+
+var getPin = function () {
+  var buttonPin = document.querySelector('button');
+  var imgPin = document.querySelector('img');
+
+  buttonPin.classList.add('map__pin');
+  buttonPin.style.left = 'locationX' + 'px';
+  buttonPin.style.top = 'locationY' + 'px';
+
+  imgPin.style.width = '40' + 'px';
+  imgPin.style.height = '40' + 'px';
+  imgPin.draggable = false;
+  imgPin.src = 'author' + 'avatar';
+  imgPin.alt = 'Метка объявления';
+
+  buttonPin.appenChild(imgPin);
+
+  return buttonPin;
+};
+
+// Задание 4
+
+var getPins = function (pins) {
+  var fragment = document.createDocumentFragment();
+
+  for (var j = 0; i < pins.length; j++) {
+    fragment.appendChild(getPin(pins[j]));
+  }
+  return fragment;
+};
