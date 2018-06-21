@@ -80,32 +80,33 @@ cityMap.classList.remove('map--faded');
 
 // Задание 3
 
-var getPin = function () {
-  var buttonPin = document.querySelector('button');
-  var imgPin = document.querySelector('img');
+var getPin = function (obj) {
+  var buttonPin = document.querySelector('template').content.querySelector('button');
+  var imgPin = buttonPin.querySelector('img');
 
   buttonPin.classList.add('map__pin');
-  buttonPin.style.left = 'locationX' + 'px';
-  buttonPin.style.top = 'locationY' + 'px';
+  buttonPin.style.left = obj.location.x + 'px';
+  buttonPin.style.top = obj.location.y + 'px';
 
   imgPin.style.width = '40' + 'px';
   imgPin.style.height = '40' + 'px';
   imgPin.draggable = false;
-  imgPin.src = 'author' + 'avatar';
+  imgPin.src = obj.author.avatar;
   imgPin.alt = 'Метка объявления';
-
-  buttonPin.appenChild(imgPin);
 
   return buttonPin;
 };
 
 // Задание 4
+var mapPins = document.querySelector('map__pins');
 
 var getPins = function (pins) {
   var fragment = document.createDocumentFragment();
 
-  for (var j = 0; i < pins.length; j++) {
+  for (var j = 0; j < pins.length; j++) {
     fragment.appendChild(getPin(pins[j]));
   }
   return fragment;
 };
+
+mapPins.appendChild(getPins());
