@@ -117,6 +117,21 @@ var mapCard = document.querySelector('template').content.querySelector('.map__ca
 var map = document.querySelector('.map');
 var filterContainer = document.querySelector('.map__filters-container');
 
+var getFeatures = function (arr, parent) {
+  var fragment = document.createDocumentFragment();
+  var features = parent.querySelector('.popup__features');
+  features.innerHTML = '';
+
+  for (var j = 0; j < arr.length; j++) {
+    var li = document.creatElement('li');
+    li.classList.add('.popup__feature');
+    li.classList.add('.popup__feature--' + arr[j]);
+    fragment.appendChild(li);
+  }
+
+  features.appendChild(fragment);
+};
+
 var getTitleType = function (type) {
   switch (type) {
     case 'flat':
@@ -132,7 +147,6 @@ var getTitleType = function (type) {
 };
 
 var getMapCard = function (obj) {
-
   mapCard.querySelector('.popup__title').innerText = obj.offer.title;
   mapCard.querySelector('.popup__text--address').innerText = obj.offer.address;
   mapCard.querySelector('.popup__text--price').innerHTML = obj.offer.price + '₽/ночь';
@@ -141,6 +155,7 @@ var getMapCard = function (obj) {
   mapCard.querySelector('.popup__text--time').innerText = 'Заезд после' + ' ' + obj.offer.checkin + ',' + 'выезд до' + ' ' + obj.offer.checkout;
 
   return mapCard;
-};
 
+};
+getFeatures(obj.offer.features, mapCard);
 map.insertBefore(getMapCard(posters[0]), filterContainer);
