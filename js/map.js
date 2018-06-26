@@ -123,10 +123,10 @@ var getFeatures = function (arr, parent) {
   features.innerHTML = '';
 
   for (var j = 0; j < arr.length; j++) {
-    var li = document.creatElement('li');
-    li.classList.add('.popup__feature');
-    li.classList.add('.popup__feature--' + arr[j]);
-    fragment.appendChild(li);
+    var newElement = document.createElement('li');
+    newElement.classList.add('popup__feature');
+    newElement.classList.add(('popup__feature--') + arr[j]);
+    fragment.appendChild(newElement);
   }
 
   features.appendChild(fragment);
@@ -153,9 +153,10 @@ var getMapCard = function (obj) {
   mapCard.querySelector('.popup__type').innerText = getTitleType(obj.offer.type);
   mapCard.querySelector('.popup__text--capacity').innerText = obj.offer.rooms + ' ' + 'комнаты для' + ' ' + obj.offer.guests + ' ' + 'гостей';
   mapCard.querySelector('.popup__text--time').innerText = 'Заезд после' + ' ' + obj.offer.checkin + ',' + 'выезд до' + ' ' + obj.offer.checkout;
-
+  mapCard.querySelector('.popup__description').innerText = obj.offer.description;
+  getFeatures(obj.offer.features, mapCard);
   return mapCard;
 
 };
-getFeatures(obj.offer.features, mapCard);
+
 map.insertBefore(getMapCard(posters[0]), filterContainer);
