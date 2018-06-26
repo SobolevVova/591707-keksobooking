@@ -117,6 +117,23 @@ var mapCard = document.querySelector('template').content.querySelector('.map__ca
 var map = document.querySelector('.map');
 var filterContainer = document.querySelector('.map__filters-container');
 
+var getPhotos = function (arr, picture) {
+  var fragment = document.createDocumentFragment();
+  var photos = picture.querySelector('.popup__photos');
+  photos.innerHTML = '';
+
+  for (var j = 0; j < arr.length; j++) {
+    var newImg = document.createElement('img');
+    newImg.src = (('http://o0.github.io/assets/images/tokyo/hotel1.jpg') + arr[j]);
+    newImg.classList.add('.popup__photo');
+    newImg.style.width = '45' + 'px';
+    newImg.style.height = '40' + 'px';
+    newImg.alt = 'Уютное гнездышко для молодоженов';
+  }
+
+  photos.appendChild(fragment);
+};
+
 var getFeatures = function (arr, parent) {
   var fragment = document.createDocumentFragment();
   var features = parent.querySelector('.popup__features');
@@ -155,6 +172,7 @@ var getMapCard = function (obj) {
   mapCard.querySelector('.popup__text--time').innerText = 'Заезд после' + ' ' + obj.offer.checkin + ',' + 'выезд до' + ' ' + obj.offer.checkout;
   mapCard.querySelector('.popup__description').innerText = obj.offer.description;
   getFeatures(obj.offer.features, mapCard);
+  getPhotos(obj.offer.photos, mapCard);
   return mapCard;
 
 };
