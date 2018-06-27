@@ -124,11 +124,12 @@ var getPhotos = function (arr, picture) {
 
   for (var j = 0; j < arr.length; j++) {
     var newImg = document.createElement('img');
-    newImg.src = (('http://o0.github.io/assets/images/tokyo/hotel1.jpg') + arr[j]);
+    newImg.src = arr[j];
     newImg.classList.add('.popup__photo');
     newImg.style.width = '45' + 'px';
     newImg.style.height = '40' + 'px';
     newImg.alt = 'Уютное гнездышко для молодоженов';
+    fragment.appendChild(newImg);
   }
 
   photos.appendChild(fragment);
