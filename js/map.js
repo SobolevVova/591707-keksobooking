@@ -125,9 +125,9 @@ var getPhotos = function (arr, picture) {
   for (var j = 0; j < arr.length; j++) {
     var newImg = document.createElement('img');
     newImg.src = arr[j];
-    newImg.classList.add('.popup__photo');
-    newImg.style.width = '45' + 'px';
-    newImg.style.height = '40' + 'px';
+    newImg.classList.add('popup__photo');
+    newImg.width = '45';
+    newImg.height = '40';
     newImg.alt = 'Уютное гнездышко для молодоженов';
     fragment.appendChild(newImg);
   }
