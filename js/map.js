@@ -85,8 +85,8 @@ var getPin = function (obj) {
   var imgPin = buttonPin.querySelector('img');
 
   buttonPin.classList.add('map__pin');
-  buttonPin.style.left = obj.location.x + 'px';
-  buttonPin.style.top = obj.location.y + 'px';
+  buttonPin.style.left = obj.location.x - imgPin.style.width / 2 + 'px';
+  buttonPin.style.top = obj.location.y - imgPin.style.height + 'px';
 
   imgPin.style.width = '40' + 'px';
   imgPin.style.height = '40' + 'px';
