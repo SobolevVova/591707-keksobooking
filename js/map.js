@@ -9,6 +9,8 @@ var LIST_GUESTS = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 var LIST_CHECKINS = ['12:00', '13:00', '14:00'];
 var LIST_FEATURES = ['wifi', 'dishwasher', 'parking', 'washer', 'elevator', 'conditioner'];
 var LIST_PHOTOS = ['http://o0.github.io/assets/images/tokyo/hotel1.jpg', 'http://o0.github.io/assets/images/tokyo/hotel2.jpg', 'http://o0.github.io/assets/images/tokyo/hotel3.jpg'];
+var PIN_WIDTH = 40;
+var PIN_HEIGHT = 40;
 
 var getRandomArrayElement = function (arr) {
   var indexRandom = getRandom(0, arr.length - 1);
@@ -83,11 +85,9 @@ cityMap.classList.remove('map--faded');
 var getPin = function (obj) {
   var buttonPin = document.querySelector('template').content.querySelector('.map__pin').cloneNode(true);
   var imgPin = buttonPin.querySelector('img');
-  var PIN_WIDTH = 40 / 2;
-  var PIN_HEIGHT = 40;
 
   buttonPin.classList.add('map__pin');
-  buttonPin.style.left = obj.location.x - PIN_WIDTH + 'px';
+  buttonPin.style.left = obj.location.x - PIN_WIDTH / 2 + 'px';
   buttonPin.style.top = obj.location.y - PIN_HEIGHT + 'px';
 
   imgPin.style.width = '40' + 'px';
