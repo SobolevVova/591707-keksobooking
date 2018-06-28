@@ -83,10 +83,12 @@ cityMap.classList.remove('map--faded');
 var getPin = function (obj) {
   var buttonPin = document.querySelector('template').content.querySelector('.map__pin').cloneNode(true);
   var imgPin = buttonPin.querySelector('img');
+  var PIN_WIDTH = 40 / 2;
+  var PIN_HEIGHT = 40;
 
   buttonPin.classList.add('map__pin');
-  buttonPin.style.left = obj.location.x - imgPin.style.width / 2 + 'px';
-  buttonPin.style.top = obj.location.y - imgPin.style.height + 'px';
+  buttonPin.style.left = obj.location.x - PIN_WIDTH + 'px';
+  buttonPin.style.top = obj.location.y - PIN_HEIGHT + 'px';
 
   imgPin.style.width = '40' + 'px';
   imgPin.style.height = '40' + 'px';
