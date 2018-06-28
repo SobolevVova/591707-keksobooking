@@ -99,7 +99,7 @@ var getPin = function (obj) {
   return buttonPin;
 };
 
-// Задание 4
+// Задание
 
 var mapPins = document.querySelector('.map__pins');
 
