@@ -99,7 +99,7 @@ var getPin = function (obj) {
   return buttonPin;
 };
 
-// Задание
+// Задание 4
 
 var mapPins = document.querySelector('.map__pins');
 
@@ -111,8 +111,7 @@ var getPins = function (pins) {
   }
   return fragment;
 };
-
-mapPins.appendChild(getPins(posters));
+// mapPins.appendChild(getPins(posters));
 
 // Задание 5
 var mapCard = document.querySelector('template').content.querySelector('.map__card').cloneNode(true);
@@ -177,7 +176,31 @@ var getMapCard = function (obj) {
   getFeatures(obj.offer.features, mapCard);
   getPhotos(obj.offer.photos, mapCard);
   return mapCard;
-
 };
 
-map.insertBefore(getMapCard(posters[0]), filterContainer);
+// map.insertBefore(getMapCard(posters[0]), filterContainer);
+
+// Задание 6
+var form = document.querySelector('.ad-form');
+var fieldsets = document.querySelectorAll('fieldset');
+var mainPin = document.querySelector('.map__pin--main');
+
+var getField = function () {
+  for (var j = 0; j < fieldsets.length; j++) {
+    fieldsets[j].classList.add('disabled');
+  }
+};
+
+getField();
+
+cityMap.classList.add('map--faded');
+form.classList.add('ad-form--disabled');
+
+var mapMouseUp = function () {
+  map.classList.remove('map--faded');
+  form.classList.remove('ad-form--disabled');
+  fieldsets.classList.remove('disabled');
+  getPins(posters);
+};
+
+mainPin.addEventListener('mouseup', mapMouseUp);
