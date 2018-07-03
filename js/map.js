@@ -78,14 +78,15 @@ for (var i = 0; i < 8; i++) {
 // Задание 2
 
 var cityMap = document.querySelector('.map');
-cityMap.classList.remove('map--faded');
 
 // Задание 3
 
-var getPin = function (obj) {
+var getPin = function (obj, number) {
   var buttonPin = document.querySelector('template').content.querySelector('.map__pin').cloneNode(true);
   var imgPin = buttonPin.querySelector('img');
 
+  buttonPin.setAttribute('tabindex', '0');
+  buttonPin.setAttribute('data-id', number);
   buttonPin.classList.add('map__pin');
   buttonPin.style.left = obj.location.x - PIN_WIDTH / 2 + 'px';
   buttonPin.style.top = obj.location.y - PIN_HEIGHT + 'px';
@@ -107,11 +108,11 @@ var getPins = function (pins) {
   var fragment = document.createDocumentFragment();
 
   for (var j = 0; j < pins.length; j++) {
-    fragment.appendChild(getPin(pins[j]));
+    fragment.appendChild(getPin(pins[j], j));
   }
   return fragment;
 };
-// mapPins.appendChild(getPins(posters));
+
 
 // Задание 5
 var mapCard = document.querySelector('template').content.querySelector('.map__card').cloneNode(true);
@@ -182,25 +183,31 @@ var getMapCard = function (obj) {
 
 // Задание 6
 var form = document.querySelector('.ad-form');
-var fieldsets = document.querySelectorAll('fieldset');
+var fieldsets = form.querySelectorAll('fieldset');
 var mainPin = document.querySelector('.map__pin--main');
 
 var getField = function () {
   for (var j = 0; j < fieldsets.length; j++) {
-    fieldsets[j].classList.add('disabled');
+    fieldsets[j].setAttribute('disabled', 'disabled');
   }
 };
 
 getField();
 
-cityMap.classList.add('map--faded');
 form.classList.add('ad-form--disabled');
 
-var mapMouseUp = function () {
+var onmapMouseUp = function () {
   map.classList.remove('map--faded');
   form.classList.remove('ad-form--disabled');
-  fieldsets.classList.remove('disabled');
-  getPins(posters);
+  mapPins.appendChild(getPins(posters));
+
+  for (var j = 0; j < fieldsets.length; j++) {
+    fieldsets[j].removeAttribute('disabled');
+  }
 };
 
-mainPin.addEventListener('mouseup', mapMouseUp);
+mainPin.addEventListener('mouseup', onmapMouseUp);
+
+document.addEventListener('click', function () {
+  map.insertBefore(getMapCard(posters[0]), filterContainer);
+});
