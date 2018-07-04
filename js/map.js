@@ -208,6 +208,8 @@ var onmapMouseUp = function () {
 
 mainPin.addEventListener('mouseup', onmapMouseUp);
 
-document.addEventListener('click', function () {
-  map.insertBefore(getMapCard(posters[0]), filterContainer);
+mapPins.addEventListener('click', function (evt) {
+  if (evt.target.classList.contains('map__pin') && !evt.target.classList.contains('map__pin--main') || evt.target.parentNode.classList.contains('map__pin') && !evt.target.parentNode.classList.contains('map__pin--main')) {
+    map.insertBefore(getMapCard(posters[evt.target.parentNode.dataset.id]), filterContainer);
+  }
 });
